@@ -1,26 +1,21 @@
 # Project Description
 
-### Project Requirements
-* This project needs to be completed by a certain time and date -- check with your mentor for your deadline. (In most cases the deadline will be close to the time Group projects start.) 
-* You will have three days to complete this project. 
-* To successfully pass off this project, you will need to walk through the app and discuss how the code makes it work. 
+### Qualifying Students
+This project is for any students missing 
+* full CRUD 
+* a join statement
+* or for those who cannot explain the above to a satisfactory level 
+When grading, be sure to require an explanation of these concepts, especially for students who recieved a lot of mentor help during personals. 
 
-### Overview 
-* The basic task for this project is building an e-commerce website. You should focus on functionality more than form/appearance. In other words, don't worry very much about styling and CSS. Instead, demonstrate that you can create something that has all of the *functionality* of an e-commerce website with a shopping cart. That means  
-  * products loaded from a database.
-  * full CRUD (create, read, update, delete) working from front to back.
-  * one JOIN statement in your SQL.
-* To help you think about what the app needs to do, there are some requirements written from the perspective of a user below. 
+### Project Duration 
+The students will have three days to complete this project. Typically this project will be done Tue-Thur of the Angular week. The code reviews should be done Thursday afternoon or Friday morning. 
 
-### User Requirements
-As a user ...  
-* I can visit the site and see products for sale.
-* I can add a product to my shopping cart.
-* I can view my shopping cart.
-  * I should be able to refresh the page and still see the contents of my cart.
-* I can delete an item from my shopping cart.
-* I can edit the quantity of an item in my shopping cart.
+### Mentor Involvement
+The students should receive very little help during this project. If they have a weird bug, feel free to jump in and help, but any typical debugging should be done by the student alone and any conceptual questions should not be answered until after the project has been passed off.
+The students should be discouraged from seeking help from other students or developer friends as well. If they fake their way through this project we can't help them get their skills where they need to be and they will graduate without being ready for a job. 
 
-### Notes
-* Full-featured authentication using Auth0 is **not** required and is strongly discouraged. 
-* You have very limited access to mentors for this project. You need to complete all of the major parts of the project on your own. Mentors can assist when you have uncommon errors, or errors unrelated to what you need to demonstrate on this assessment. 
+### Code Review
+A code review should be performed for each student at the end of the project. This has two main parts: a demo of the functionality in the browser (to make sure the code compiles correctly), and a walkthrough of the code itself with the student explaining each line. 
+The walkthrough should focus on CRUD, the join statement, and basic React component lifecycle (ex. "Once the response comes back from the server, I set state with the data and the page rerenders"). The student doesn't need to explain routing, JSX, or CSS unless you feel they are struggling a lot with those concepts. 
+Students have occasionally used code written by other people to pass this project, despite our warnings about cheating themselves. If you notice advanced patterns or a unexpected level of competency in code, make sure to push the student to explain the code very thoroughly. 
+The mentor from Async should sit in on these code reviews if possible, and will have experience with performing code reviews. 
