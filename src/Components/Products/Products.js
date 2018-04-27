@@ -28,7 +28,8 @@ export default class Products extends Component {
                     pic = {meme.memepic}
                     price = {meme.price}
                     description = {meme.description}
-                    key = {i}/>
+                    key = {meme.id}
+                    id = {meme.id}/>
                 </div>
             )
         })

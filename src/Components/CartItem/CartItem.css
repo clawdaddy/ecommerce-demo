@@ -1,0 +1,15 @@
+.quantity {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.item {
+    border:5px black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+
+}
