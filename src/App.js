@@ -4,7 +4,6 @@ import './App.css';
 import { Route, Switch } from 'react-router-dom';
 import Landing from './Components/Landing/Landing';
 import Cart from './Components/Cart/Cart';
-import CheckOut from './Components/CheckOut/CheckOut';
 import Products from './Components/Products/Products';
 import NavBar from './Components/NavBar/NavBar';
 

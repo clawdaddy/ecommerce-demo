@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const massive = require('massive');
+const memectrl = require('./memectrl');
 require('dotenv').config()
 
 
@@ -20,6 +21,8 @@ app.use(session({
     resave:false,
     saveUninitialized:true
 }))
+
+app.get('/api/memes', memectrl.getMemes)
 
 
 
