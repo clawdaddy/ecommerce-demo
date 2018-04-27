@@ -20,11 +20,12 @@ module.exports = {
         let quantity = 1;
         req.app.get('db').new_item([memeid, sessionid, quantity]).then( cartid => {
         if (req.session.cart){
-            req.session.cart.push({cartid:cartid[0].id, memeid})
+            req.session.cart.push({cartid:cartid[0].id, memeid}, quantity)
             
             res.status(200).send({cartid:cartid[0].id, memeid, sessionid})
         } else {
-            req.session.cart = [{cartid:cartid[0].id, memeid}]
+            
+            req.session.cart = [{cartid:cartid[0].id, memeid, quantity}]
             
             res.status(200).send({cartid:cartid[0].id, memeid, sessionid})
         }
@@ -33,10 +34,20 @@ module.exports = {
     },
     updateQuantity: (req, res, next) => {
         const { quantity, id } = req.body;
-        let item = _.find(req.session.cart, item => {
-            return item.id === id
+        let index = 0
+        let item = _.find(req.session.cart, (item, i) => {
+            index = i;
+            return item.cartid === id
         })
-        console.log(item)
+        let newItem = Object.assign({}, item, {quantity:quantity})
+        let newArray = [...req.session.cart]
+        newArray.splice(index, 1, newItem)
+        req.session.cart = newArray;
+        req.app.get('db').update_quantity([quantity, id]).then( result => {
+            console.log(result)
+            res.status(200).send({quantity: result[0].quantity})
+        })
+        
 
     },
     deleteFromCart: (req, res, next) => {

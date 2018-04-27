@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './CartItem.css';
 import axios from 'axios';
-export default class CartItem extends Component {
+import { connect } from 'react-redux';
+import { updateTotalFn } from '../../ducks/reducer';
+class CartItem extends Component {
     constructor(){
         super();
         this.state= {
@@ -17,23 +19,23 @@ export default class CartItem extends Component {
 
     componentDidMount(){
         const { quantity, memepic, price, description, id } = this.props;
-        this.setState({quantity, memepic, price, description, id})
+        let subtotal = quantity*price;
+        this.setState({quantity, memepic, price, description, id, subtotal})
     }
-    increaseQuantity(){
-        const { quantity, id } = this.state;
-        let newQuantity = quantity + 1;
-        this.setState({quantity:newQuantity})
-        axios.post('/api/updatequantity', {quantity:newQuantity, id:id})
-    }
-    decreaseQuantity(){
-        const {quantity, id } = this.state;
-        let newQuantity = quantity -1;
-        this.setState({quantity:newQuantity})
-        axios.post('/api/updatequantity', {quantity:newQuantity, id:id})
+    changeQuantity(num){
+        const { quantity, id, price } = this.state;
+        let newQuantity = quantity + num;
+        let subtotal = 0
+        axios.patch('/api/updatequantity', {quantity:newQuantity, id:id}).then( res => {
+            subtotal = res.data.quantity * price
+            this.setState({quantity:res.data.quantity, subtotal:subtotal})
+            this.props.updateTotalFn(!this.props.updateTotal);
+        })
     }
 
     render(){
-        const { quantity, memepic, price, description, subtotal } = this.state; 
+        const { quantity, memepic, price, description, subtotal } = this.state;
+        
         return (
             <div className='item'>
                 <img src={memepic} />
@@ -41,12 +43,19 @@ export default class CartItem extends Component {
                 <p>{description}</p>
                 
                 <div className='quantity'>
-                    <button onClick={() => this.decreaseQuantity()}>-</button>
+                    <button onClick={() => this.changeQuantity(-1)}>-</button>
                     <p>{quantity}</p>
-                    <button onClick={() => this.increaseQuantity()}>+</button>
+                    <button onClick={() => this.changeQuantity(1)}>+</button>
                 </div>
                 <p>Subtotal: ${quantity*price}</p>
             </div>
         )
     }
 }
+
+function mapStateToProps ( state ){
+    return ({
+        updateTotal:state.updateTotal
+    })
+}
+export default connect(mapStateToProps, { updateTotalFn })(CartItem)

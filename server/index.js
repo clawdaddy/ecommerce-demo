@@ -25,7 +25,7 @@ app.use(session({
 app.get('/api/memes', memectrl.getMemes)
 app.get('/api/getcart', memectrl.getCart)
 app.post('/api/addtocart', memectrl.addToCart)
-app.post('/api/updatequantity', memectrl.updateQuantity)
+app.patch('/api/updatequantity', memectrl.updateQuantity)
 app.delete('/api/removefromcart/:dbid', memectrl.deleteFromCart)
 
 

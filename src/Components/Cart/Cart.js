@@ -1,27 +1,31 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import CartItem from '../CartItem/CartItem';
+import Total from '../Total/Total';
 
 
 export default class Cart extends Component {
     constructor(){
         super();
         this.state = {
-            cart:[]
+            cart:[],
         }
     }
     componentDidMount(){
         axios.get('/api/getcart').then( cart => {
             this.setState({cart:cart.data})
         })
+        
     }
-
-    componentDidUpdate(){
-        axios.get('/api/getcart')
+    componentDidUpdate(prevProps, prevState, snapshot){
+        if (prevState.cart !== this.state.cart){
+            
+        }
     }
+    
 
     render(){
-        const { cart  } = this.state;
+        const { cart, total  } = this.state;
         let cartRender = cart.map( item => {
             return (
                 <CartItem
@@ -30,7 +34,8 @@ export default class Cart extends Component {
                 price = {item.price}
                 description = {item.description}
                 id = {item.id}
-                key = {item.id}/>
+                key = {item.id}
+                subTotalFn = {this.subTotal}/>
             )
         })
         return (
@@ -38,6 +43,7 @@ export default class Cart extends Component {
             <div>
                 <h1>Cart</h1>
                 {cartRender}
+                <Total/>
             </div>
         )
     }
