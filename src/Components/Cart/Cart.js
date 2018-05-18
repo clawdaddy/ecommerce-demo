@@ -18,7 +18,7 @@ export default class Cart extends Component {
         
     }
     componentDidUpdate(prevProps, prevState, snapshot){
-        if (prevState.cart !== this.state.cart){
+        if (prevState.cartecommer !== this.state.cart){
             
         }
     }

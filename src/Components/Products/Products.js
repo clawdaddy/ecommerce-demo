@@ -8,6 +8,7 @@ export default class Products extends Component {
         this.state = {
             memes:[]
         }
+        this.productDetail = this.productDetail.bind(this);
     }
 
 
@@ -17,20 +18,24 @@ export default class Products extends Component {
             
         })
     }
+    productDetail(id){
+        this.props.history.push(`/product/detail/${id}`)
+    }
 
     render(){
         const { memes } = this.state;
-        console.log(memes)
         const memeSet = memes.map( (meme, i) => {
             return (
-                <div>
+                <section>
                     <Product
                     pic = {meme.memepic}
                     price = {meme.price}
                     description = {meme.description}
-                    key = {meme.id}
-                    id = {meme.id}/>
-                </div>
+                    key = {`meme ${i}`}
+                    id = {meme.id}
+                    productDetailFn = {this.productDetail}/>
+                    
+                </section>
             )
         })
         return(

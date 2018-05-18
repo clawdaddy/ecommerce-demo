@@ -6,6 +6,7 @@ import Landing from './Components/Landing/Landing';
 import Cart from './Components/Cart/Cart';
 import Products from './Components/Products/Products';
 import NavBar from './Components/NavBar/NavBar';
+import ProductDetail from './Components/ProductDetail/ProductDetail';
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
           <Route exact path='/' component={Landing}/>
           <Route path='/cart' component={Cart}/>
           <Route path='/products' component={Products}/>
+          <Route path={`/product/detail/:productid`} component={ProductDetail}/>
         </Switch>
       </div>
     );

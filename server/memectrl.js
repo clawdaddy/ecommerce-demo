@@ -7,6 +7,12 @@ module.exports = {
             res.status(200).send(memes)
         })
     },
+    getMeme: (req, res, next) => {
+        const {productid} = req.params;
+        req.app.get('db').get_meme([productid]).then( meme => {
+            res.status(200).send(meme[0])
+        })
+    },
     getCart: (req, res, next) => {
         const { id } = req.session;
         req.app.get('db').get_cart([id]).then( cart => {

@@ -29,10 +29,10 @@ export default class Product extends Component{
         )
     }
     render(){
-        const { pic, price, description, i, id} = this.props;
+        const { pic, price, description, id, i, productDetailFn} = this.props;
         return(
-            <div key = {i}>
-                <img src={pic}/>
+            <div key = {`meme ${i}`}>
+                <img src={pic} onClick={() => productDetailFn(id)}/>
                 <p>${price}</p>
                 <p>{description}</p>
                 <button onClick={ () => this.addItem()} disabled={this.state.disableButton}>
